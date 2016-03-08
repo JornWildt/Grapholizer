@@ -8,4 +8,5 @@ UNUSED*
 UNUSED*/
 Logs/
 packages/
+Graphs/
 .nuget/
