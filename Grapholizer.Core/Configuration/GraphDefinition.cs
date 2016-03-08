@@ -9,8 +9,7 @@ namespace Grapholizer.Core.Configuration
     [XmlAttribute]
     public string Title { get; set; }
 
-    [XmlArray("Nodes")]
-    [XmlArrayItem("Node")]
+    [XmlElement("Node")]
     public NodeDefinition[] Nodes { get; set; }
   }
 }
