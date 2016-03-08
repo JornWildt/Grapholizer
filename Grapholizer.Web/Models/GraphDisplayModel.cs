@@ -5,5 +5,6 @@
     public string Name { get; set; }
     public string Node { get; set; }
     public string Id { get; set; }
+    public int Size { get; set; }
   }
 }

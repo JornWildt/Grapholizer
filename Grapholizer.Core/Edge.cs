@@ -4,6 +4,8 @@
   {
     public string Label { get; set; }
 
-    public string TargetNode { get; set; }
+    public string TargetNodeType { get; set; }
+
+    public string TargetNodeId { get; set; }
   }
 }

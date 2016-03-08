@@ -16,17 +16,17 @@ namespace Grapholizer.WebApi.Controllers
     #endregion
 
 
-    public object Get(string name, string node, string id)
+    public object Get(string name, string node, string id, int size = 5)
     {
-      GraphSegment g = GraphService.GetGraphSegment(name, node, id);
+      GraphSegment g = GraphService.GetGraphSegment(name, node, id, size);
 
       Random r = new Random();
 
       GraphJS gjs = new GraphJS
       {
         nodes = g.Nodes.Select(n => new NodeJS
-        { id = n.Id, label = n.Label, x = r.Next(10), y = r.Next(10), size = n.Edges.Length + 1 }).ToArray(),
-        edges = g.Nodes.SelectMany(n => n.Edges.Select(e => new EdgeJS { id = Guid.NewGuid().ToString(), source = n.Id, target = e.TargetNode })).ToArray()
+        { id = n.Id, label = n.Label, x = r.Next(100), y = r.Next(100), size = n.Edges.Length + 1 }).ToArray(),
+        edges = g.Nodes.SelectMany(n => n.Edges.Select(e => new EdgeJS { id = Guid.NewGuid().ToString(), source = n.Id, target = e.TargetNodeId })).ToArray()
       };
 
       return gjs;

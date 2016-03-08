@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Grapholizer.Core.Utility;
+using log4net;
 
 namespace Grapholizer.Core.DataAccess
 {
   public class SqlClientDataProvider : IDataProvider
   {
+    static ILog Logger = LogManager.GetLogger(typeof(SqlClientDataProvider));
+
+
     #region Dependencies
 
     public IUnitOfWorkManager<SqlClientUnitOfWork> UnitOfWorkManager { get; set; }
@@ -37,7 +38,10 @@ namespace Grapholizer.Core.DataAccess
     {
       DataTable table = Read(sql, parameters);
       if (table.Rows.Count == 0)
+      {
+        Logger.DebugFormat("Could not find any rows for '{0}'", sql);
         throw new InvalidOperationException("No rows found");
+      }
       return table.Rows[0];
     }
 

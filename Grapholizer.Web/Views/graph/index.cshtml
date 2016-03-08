@@ -10,7 +10,7 @@
   <style type="text/css">
     #sigma-container {
       width: 100%;
-      height: 300px;
+      height: 500px;
       border: 1px solid red;
     }
   </style>
@@ -23,7 +23,7 @@
 
   <script>
     sigma.parsers.json(
-      'http://localhost/grapholizer.api/graph/@Model.Name/@Model.Node/@Model.Id',
+      'http://localhost/grapholizer.api/graph/@Model.Name/@Model.Node/@Model.Id?size=@Model.Size',
       { container: 'sigma-container' });
   </script>
 
