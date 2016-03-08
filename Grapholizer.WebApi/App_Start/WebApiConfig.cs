@@ -6,15 +6,19 @@ using Castle.MicroKernel.Registration;
 using Grapholizer.Core;
 using Grapholizer.Core.DataAccess;
 using Grapholizer.WebApi.Utility;
-
+using log4net;
 
 namespace Grapholizer.WebApi
 {
   public static class WebApiConfig
   {
+    static ILog Logger = LogManager.GetLogger(typeof(WebApiConfig));
+
+
     public static void Register(HttpConfiguration config)
     {
-      // Web API configuration and services
+      log4net.Config.XmlConfigurator.Configure();
+      Logger.Info("****** Starting Grapholizer API ******");
 
       // Web API routes
       config.MapHttpAttributeRoutes();
