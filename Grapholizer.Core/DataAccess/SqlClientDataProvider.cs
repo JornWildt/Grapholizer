@@ -21,16 +21,25 @@ namespace Grapholizer.Core.DataAccess
 
     public DataTable Read(string sql, object parameters)
     {
-      SqlCommand cmd = new SqlCommand(sql, UnitOfWorkManager.State.Connection);
-      AddCommandParameters(cmd, parameters);
+      try
+      {
+        SqlCommand cmd = new SqlCommand(sql, UnitOfWorkManager.State.Connection);
+        AddCommandParameters(cmd, parameters);
 
-      SqlDataAdapter adapter = new SqlDataAdapter();
-      adapter.SelectCommand = cmd;
+        SqlDataAdapter adapter = new SqlDataAdapter();
+        adapter.SelectCommand = cmd;
 
-      DataSet ds = new DataSet();
-      adapter.Fill(ds, "data");
+        DataSet ds = new DataSet();
+        adapter.Fill(ds, "data");
 
-      return ds.Tables[0];
+        return ds.Tables[0];
+      }
+      catch (SqlException ex)
+      {
+        Logger.Error(ex);
+        Logger.InfoFormat("SQL: {0}", sql);
+        throw;
+      }
     }
 
 

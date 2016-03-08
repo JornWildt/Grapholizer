@@ -25,8 +25,24 @@ namespace Grapholizer.WebApi.Controllers
       GraphJS gjs = new GraphJS
       {
         nodes = g.Nodes.Select(n => new NodeJS
-        { id = n.Id, label = n.Label, x = r.Next(100), y = r.Next(100), size = n.Edges.Length + 1 }).ToArray(),
-        edges = g.Nodes.SelectMany(n => n.Edges.Select(e => new EdgeJS { id = Guid.NewGuid().ToString(), source = n.Id, target = e.TargetNodeId })).ToArray()
+        {
+          id = n.Id,
+          label = n.Label,
+          x = r.Next(100),
+          y = r.Next(100),
+          size = n.Size ?? 1,
+          color = n.Color,
+          type = n.Type
+        }).ToArray(),
+        edges = g.Nodes.SelectMany(n => n.Edges.Select(e => new EdgeJS
+        {
+          id = Guid.NewGuid().ToString(),
+          source = n.Id,
+          target = e.TargetNodeId,
+          size = e.Size ?? 1,
+          color = e.Color,
+          type = e.Type
+        })).ToArray()
       };
 
       return gjs;

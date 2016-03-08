@@ -45,7 +45,7 @@ namespace Grapholizer.Core
       if (nodes.ContainsKey(nodeKey))
         return null;
 
-      Node node = GetNode(graph, nodeType, id, level > 1);
+      Node node = GetNode(graph, nodeType, id, level, level > 1);
       nodes[nodeKey] = node;
 
       foreach (Edge e in node.Edges)
@@ -57,11 +57,11 @@ namespace Grapholizer.Core
     }
 
 
-    protected Node GetNode(GraphDefinition graph, string nodeType, string id, bool getEdges)
+    protected Node GetNode(GraphDefinition graph, string nodeType, string id, int level, bool getEdges)
     {
       NodeDefinition nodeDef = GetNodeDefinition(graph, nodeType);
 
-      DataRow node = ReadNode(nodeDef, id);
+      DataRow node = ReadNode(nodeDef, id, level);
       Edge[] edges = getEdges
         ? nodeDef.Edges.SelectMany(e => ReadEdges(e, id)).ToArray()
         : new Edge[0];
@@ -69,8 +69,10 @@ namespace Grapholizer.Core
       return new Node
       {
         Id = node["_Id"].ToString(),
-        
-        Label = node["_Label"].ToString(),
+        Label = node.Table.Columns.Contains("_Label") ? node["_Label"].ToString() : null,
+        Size = node.Table.Columns.Contains("_Size") ? node["_Size"] as int? : null,
+        Color = node.Table.Columns.Contains("_Color") ? node["_Color"].ToString() : null,
+        Type = node.Table.Columns.Contains("_Type") ? node["_Type"].ToString() : null,
         Edges = edges
       };
     }
@@ -84,10 +86,10 @@ namespace Grapholizer.Core
     }
 
 
-    protected DataRow ReadNode(NodeDefinition nodeDef, string id)
+    protected DataRow ReadNode(NodeDefinition nodeDef, string id, int level)
     {
       string sql = nodeDef.SQL;
-      DataRow row = DataProvider.ReadSingle(sql, new { Id = id });
+      DataRow row = DataProvider.ReadSingle(sql, new { Id = id, Level = level });
       return row;
     }
 
@@ -100,9 +102,12 @@ namespace Grapholizer.Core
         .Where(row => row["_Id"] != DBNull.Value)
         .Select(row => new Edge
         {
-          Label = row["_Label"].ToString(),
           TargetNodeType = edgeDef.TargetNode,
-          TargetNodeId = row["_Id"].ToString()
+          TargetNodeId = row["_Id"].ToString(),
+          Label = row.Table.Columns.Contains("_Label") ? row["_Label"].ToString() : null,
+          Size = row.Table.Columns.Contains("_Size") ? row["_Size"] as int? : null,
+          Color = row.Table.Columns.Contains("_Color") ? row["_Color"].ToString() : null,
+          Type = row.Table.Columns.Contains("_Type") ? row["_Type"].ToString() : null,
         });
     }
   }
