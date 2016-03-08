@@ -1,27 +1,19 @@
-﻿using System;
-using System.Configuration;
-using System.Data.SqlClient;
+﻿using System.Web;
 using Grapholizer.Core.DataAccess;
 
 
 namespace Grapholizer.WebApi.Utility
 {
-  public class WebUnitOfWorkManager : IUnitOfWorkManager<SqlClientUnitOfWork>, IDisposable
+  public class WebUnitOfWorkManager : IUnitOfWorkManager<SqlClientUnitOfWork>
   {
-    public SqlClientUnitOfWork State { get; protected set; }
+    internal const string UnitOfWorkStateName = "UnitOfWorkState";
 
-
-    public WebUnitOfWorkManager()
+    public SqlClientUnitOfWork State
     {
-      string cs = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
-      SqlConnection c = new SqlConnection(cs);
-      State = new SqlClientUnitOfWork { Connection = c };
-    }
-
-
-    public void Dispose()
-    {
-      State.Connection.Close();
+      get
+      {
+        return (SqlClientUnitOfWork)HttpContext.Current.Items[UnitOfWorkStateName];
+      }
     }
   }
 }
