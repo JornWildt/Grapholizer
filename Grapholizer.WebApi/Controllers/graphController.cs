@@ -16,24 +16,26 @@ namespace Grapholizer.WebApi.Controllers
     // GET: api/graph/5
     public object Get(string name, string node, string id)
     {
-      IUnitOfWorkManager<SqlClientUnitOfWork> uow = new WebUnitOfWorkManager();
-      IDataProvider dataProvider = new SqlClientDataProvider { UnitOfWorkManager = uow };
-
-      GraphService gs = new GraphService();
-      gs.DataProvider = dataProvider;
-
-      GraphSegment g = gs.GetGraphSegment(name, node, id);
-
-      Random r = new Random();
-
-      GraphJS gjs = new GraphJS
+      using (IUnitOfWorkManager<SqlClientUnitOfWork> uow = new WebUnitOfWorkManager())
       {
-        nodes = g.Nodes.Select(n => new NodeJS
-          { id = n.Id, label = n.Label, x = r.Next(10), y = r.Next(10), size = n.Edges.Length+1 }).ToArray(),
-        edges = g.Nodes.SelectMany(n => n.Edges.Select(e => new EdgeJS { id = Guid.NewGuid().ToString(), source = n.Id, target = e.TargetNode })).ToArray()
-      };
+        IDataProvider dataProvider = new SqlClientDataProvider { UnitOfWorkManager = uow };
 
-      return gjs;
+        GraphService gs = new GraphService();
+        gs.DataProvider = dataProvider;
+
+        GraphSegment g = gs.GetGraphSegment(name, node, id);
+
+        Random r = new Random();
+
+        GraphJS gjs = new GraphJS
+        {
+          nodes = g.Nodes.Select(n => new NodeJS
+          { id = n.Id, label = n.Label, x = r.Next(10), y = r.Next(10), size = n.Edges.Length + 1 }).ToArray(),
+          edges = g.Nodes.SelectMany(n => n.Edges.Select(e => new EdgeJS { id = Guid.NewGuid().ToString(), source = n.Id, target = e.TargetNode })).ToArray()
+        };
+
+        return gjs;
+      }
     }
   }
 }
