@@ -13,15 +13,23 @@ namespace Grapholizer.WebApi.Controllers
 {
   public class graphController : ApiController
   {
+    #region Dependencies
+
+    public IDataProvider DataProvider { get; set; }
+
+    #endregion
+
+
     // GET: api/graph/5
     public object Get(string name, string node, string id)
     {
       using (IUnitOfWorkManager<SqlClientUnitOfWork> uow = new WebUnitOfWorkManager())
       {
-        IDataProvider dataProvider = new SqlClientDataProvider { UnitOfWorkManager = uow };
+        // FIXME: improve this!
+        ((SqlClientDataProvider)DataProvider).UnitOfWorkManager = uow;
 
         GraphService gs = new GraphService();
-        gs.DataProvider = dataProvider;
+        gs.DataProvider = DataProvider;
 
         GraphSegment g = gs.GetGraphSegment(name, node, id);
 
