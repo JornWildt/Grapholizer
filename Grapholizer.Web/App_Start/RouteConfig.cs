@@ -7,17 +7,21 @@ using System.Web.Routing;
 
 namespace Grapholizer.Web
 {
-    public class RouteConfig
+  public class RouteConfig
+  {
+    public static void RegisterRoutes(RouteCollection routes)
     {
-        public static void RegisterRoutes(RouteCollection routes)
-        {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+      routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
-        }
+      routes.MapRoute(
+        name: "Graph",
+        url: "graph/{name}/{node}/{id}",
+        defaults: new { controller = "graph", action = "Index" });
+
+      routes.MapRoute(
+        name: "Default",
+        url: "{controller}/{action}/{id}",
+        defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
     }
+  }
 }
