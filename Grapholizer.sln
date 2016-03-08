@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grapholizer.Core", "Grapholizer.Core\Grapholizer.Core.csproj", "{B058725C-EF31-4508-B1FD-F4F31F61F769}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grapholizer.WebApi", "Grapholizer.WebApi\Grapholizer.WebApi.csproj", "{7F5AA2E0-1256-4F4C-8464-684D9155A00C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grapholizer.Web", "Grapholizer.Web\Grapholizer.Web.csproj", "{B5947727-1CB2-42A7-AF0C-DC4BABEF9245}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B058725C-EF31-4508-B1FD-F4F31F61F769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B058725C-EF31-4508-B1FD-F4F31F61F769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B058725C-EF31-4508-B1FD-F4F31F61F769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B058725C-EF31-4508-B1FD-F4F31F61F769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F5AA2E0-1256-4F4C-8464-684D9155A00C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F5AA2E0-1256-4F4C-8464-684D9155A00C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F5AA2E0-1256-4F4C-8464-684D9155A00C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F5AA2E0-1256-4F4C-8464-684D9155A00C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5947727-1CB2-42A7-AF0C-DC4BABEF9245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5947727-1CB2-42A7-AF0C-DC4BABEF9245}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5947727-1CB2-42A7-AF0C-DC4BABEF9245}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5947727-1CB2-42A7-AF0C-DC4BABEF9245}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
