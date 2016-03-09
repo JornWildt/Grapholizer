@@ -40,6 +40,7 @@ namespace Grapholizer.WebApi.Controllers
           id = Guid.NewGuid().ToString(),
           source = n.Id,
           target = e.TargetNodeId,
+          label = e.Label,
           size = e.Size ?? 1,
           color = e.Color,
           type = e.Symbol

@@ -5,6 +5,7 @@
     public string id { get; set; }
     public string source { get; set; }
     public string target { get; set; }
+    public string label { get; set; }
     public int? size { get; set; }
     public string color { get; set; }
     public string type { get; set; }
