@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace Grapholizer.Core.Layouts
 {
-  public class TreeLayout
+  public class TreeLayout : ILayout
   {
     public void Layout(Dictionary<string, Node> nodes, Node root)
     {

@@ -17,7 +17,7 @@ namespace Grapholizer.Core
     #endregion
 
 
-    public GraphSegment GetGraphSegment(string graphName, string nodeType, string id, int size)
+    public Graph GetGraph(string graphName, string nodeType, string id, int size)
     {
       if (size < 1)
         size = 1;
@@ -29,10 +29,17 @@ namespace Grapholizer.Core
 
       Node root = GetNodeRecursively(graph, nodeType, id, nodes, size);
 
-      TreeLayout layout = new TreeLayout();
+      ILayout layout = null;
+      if (graph.Layout != null)
+      {
+        if (graph.Layout.Style == "Tree")
+          layout = new TreeLayout();
+        else
+          layout = new RandomLayout();
+      }
       layout.Layout(nodes, root);
 
-      return new GraphSegment
+      return new Graph
       {
         Nodes = nodes.Select(n => n.Value).ToArray()
       };

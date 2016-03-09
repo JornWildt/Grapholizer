@@ -18,7 +18,7 @@ namespace Grapholizer.WebApi.Controllers
 
     public object Get(string name, string node, string id, int size = 5)
     {
-      GraphSegment g = GraphService.GetGraphSegment(name, node, id, size);
+      Graph g = GraphService.GetGraph(name, node, id, size);
 
       Random r = new Random();
 
