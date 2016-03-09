@@ -9,5 +9,6 @@
     public int? size { get; set; }
     public string color { get; set; }
     public string type { get; set; }
+    public string selfLink { get; set; }
   }
 }
