@@ -57,6 +57,7 @@
     <Compile Include="Edge.cs" />
     <Compile Include="GraphSegment.cs" />
     <Compile Include="GraphService.cs" />
+    <Compile Include="Layouts\TreeLayout.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ReflectionHelper.cs" />

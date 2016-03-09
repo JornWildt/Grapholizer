@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using Grapholizer.Core.Configuration;
 using Grapholizer.Core.DataAccess;
-
+using Grapholizer.Core.Layouts;
 
 namespace Grapholizer.Core
 {
@@ -28,6 +28,9 @@ namespace Grapholizer.Core
       Dictionary<string, Node> nodes = new Dictionary<string, Node>();
 
       Node root = GetNodeRecursively(graph, nodeType, id, nodes, size);
+
+      TreeLayout layout = new TreeLayout();
+      layout.Layout(nodes, root);
 
       return new GraphSegment
       {
@@ -68,11 +71,12 @@ namespace Grapholizer.Core
 
       return new Node
       {
+        Type = nodeType,
         Id = node["_Id"].ToString(),
         Label = node.Table.Columns.Contains("_Label") ? node["_Label"].ToString() : null,
         Size = node.Table.Columns.Contains("_Size") ? node["_Size"] as int? : null,
         Color = node.Table.Columns.Contains("_Color") ? node["_Color"].ToString() : null,
-        Type = node.Table.Columns.Contains("_Type") ? node["_Type"].ToString() : null,
+        Symbol = node.Table.Columns.Contains("_Type") ? node["_Type"].ToString() : null,
         Edges = edges
       };
     }
@@ -107,7 +111,7 @@ namespace Grapholizer.Core
           Label = row.Table.Columns.Contains("_Label") ? row["_Label"].ToString() : null,
           Size = row.Table.Columns.Contains("_Size") ? row["_Size"] as int? : null,
           Color = row.Table.Columns.Contains("_Color") ? row["_Color"].ToString() : null,
-          Type = row.Table.Columns.Contains("_Type") ? row["_Type"].ToString() : null,
+          Symbol = row.Table.Columns.Contains("_Type") ? row["_Type"].ToString() : null,
         });
     }
   }

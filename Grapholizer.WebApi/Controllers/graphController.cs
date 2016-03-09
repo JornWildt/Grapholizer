@@ -28,11 +28,11 @@ namespace Grapholizer.WebApi.Controllers
         {
           id = n.Id,
           label = n.Label,
-          x = r.Next(100),
-          y = r.Next(100),
+          x = n.X,
+          y = n.Y,
           size = n.Size ?? 1,
           color = n.Color,
-          type = n.Type
+          type = n.Symbol
         }).ToArray(),
         edges = g.Nodes.SelectMany(n => n.Edges.Select(e => new EdgeJS
         {
@@ -41,7 +41,7 @@ namespace Grapholizer.WebApi.Controllers
           target = e.TargetNodeId,
           size = e.Size ?? 1,
           color = e.Color,
-          type = e.Type
+          type = e.Symbol
         })).ToArray()
       };
 
