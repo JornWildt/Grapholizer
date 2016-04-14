@@ -33,7 +33,8 @@ namespace Grapholizer.WebApi.Controllers
           size = n.Size ?? 1,
           color = n.Color,
           type = n.Symbol,
-          selfLink = string.Format("http://localhost/grapholizer.api/graph/example1/{0}/{1}?size={2}", n.Type, n.Id, size)
+          graphName = name,
+          nodeType = n.Type
         }).ToArray(),
         edges = g.Nodes.SelectMany(n => n.Edges.Select(e => new EdgeJS
         {

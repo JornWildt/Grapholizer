@@ -58,7 +58,6 @@ namespace Grapholizer.Core.Layouts
           if (next.Rank == 0)
           {
             next.Rank = current.Rank + 1;
-            //next.N.Label = next.N.Label + $" [{next.Rank}]";
             workset.Enqueue(next);
           }
         }

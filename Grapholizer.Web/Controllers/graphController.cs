@@ -21,6 +21,7 @@ namespace Grapholizer.Web.Controllers
         GraphDisplayModel model = new GraphDisplayModel
         {
           ApiBaseUrl = AppSettings.ApiBaseUrl.Value,
+          WebBaseUrl = AppSettings.WebBaseUrl.Value,
           Name = name,
           Node = node,
           Id = id,

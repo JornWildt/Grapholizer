@@ -63,10 +63,7 @@
 
     function loadNode(n) {
       if (n.data.node.selfLink != '') {
-        if (graph != null)
-          graph.kill();
-
-        loadGraph(n.data.node.selfLink);
+        window.location = '@Model.WebBaseUrl' + '/graph/' + n.data.node.graphName + '/' + n.data.node.nodeType + '/' + n.data.node.id;
       }
     }
   </script>
