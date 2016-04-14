@@ -32,8 +32,10 @@ namespace Grapholizer.Core
       ILayout layout = null;
       if (graph.Layout != null)
       {
-        if (graph.Layout.Style == "Tree")
-          layout = new TreeLayout();
+        if (graph.Layout.Style == "DFTree")
+          layout = new DepthFirstTreeLayout();
+        else if (graph.Layout.Style == "BFTree")
+          layout = new BreadthFirstTreeLayout();
         else
           layout = new RandomLayout();
       }
@@ -42,6 +44,16 @@ namespace Grapholizer.Core
       return new Graph
       {
         Nodes = nodes.Select(n => n.Value).ToArray()
+      };
+    }
+
+
+    public GraphMeta GetGraphMeta(string graphName)
+    {
+      GraphDefinition graph = GraphParser.GetGraphDefinition(graphName);
+      return new GraphMeta
+      {
+        Title = graph.Title
       };
     }
 

@@ -102,11 +102,13 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\graphController.cs" />
+    <Compile Include="Controllers\metaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\JSON\EdgeJS.cs" />
     <Compile Include="Models\JSON\GraphJS.cs" />
+    <Compile Include="Models\JSON\MetaJS.cs" />
     <Compile Include="Models\JSON\NodeJS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\CastleWindsorDependencyResolver.cs" />

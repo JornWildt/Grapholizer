@@ -30,8 +30,13 @@ namespace Grapholizer.WebApi
 
       config.Routes.MapHttpRoute(
         name: "GraphApi",
-        routeTemplate: "graph/{name}/{node}/{id}",
-        defaults: new { controller = "graph" });
+        routeTemplate: "{controller}/{name}/{node}/{id}",
+        defaults: new { node = RouteParameter.Optional, id = RouteParameter.Optional });
+
+      //config.Routes.MapHttpRoute(
+      //  name: "metaApi",
+      //  routeTemplate: "meta/{name}",
+      //  defaults: new { controller = "meta" });
 
       config.Formatters.Remove(config.Formatters.XmlFormatter);
       ConfigureDependencies(config);

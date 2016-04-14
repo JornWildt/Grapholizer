@@ -21,12 +21,12 @@
 </head>
 <body>
   <div>
-    <h1>Graph</h1>
+    <h1>@Model.Title</h1>
     <div id="sigma-container"></div>
   </div>
 
   <script>
-    loadGraph('http://localhost/grapholizer.api/graph/@Model.Name/@Model.Node/@Model.Id?size=@Model.Size');
+    loadGraph('@Model.ApiBaseUrl/graph/@Model.Name/@Model.Node/@Model.Id?size=@Model.Size');
 
     var graph = null;
 

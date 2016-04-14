@@ -57,10 +57,12 @@
     <Compile Include="DataAccess\SqlClientUnitOfWork.cs" />
     <Compile Include="Edge.cs" />
     <Compile Include="Graph.cs" />
+    <Compile Include="GraphMeta.cs" />
     <Compile Include="GraphService.cs" />
+    <Compile Include="Layouts\BreadthFirstTreeLayout.cs" />
     <Compile Include="Layouts\ILayout.cs" />
     <Compile Include="Layouts\RandomLayout.cs" />
-    <Compile Include="Layouts\TreeLayout.cs" />
+    <Compile Include="Layouts\DepthFirstTreeLayout.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ReflectionHelper.cs" />
