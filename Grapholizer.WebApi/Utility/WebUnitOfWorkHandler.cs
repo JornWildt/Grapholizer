@@ -15,7 +15,7 @@ namespace Grapholizer.WebApi.Utility
     {
       try
       {
-        string cs = ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+        string cs = ConfigurationManager.ConnectionStrings["DB"].ConnectionString;
         SqlConnection c = new SqlConnection(cs);
         HttpContext.Current.Items[WebUnitOfWorkManager.UnitOfWorkStateName] = new SqlClientUnitOfWork { Connection = c };
 
